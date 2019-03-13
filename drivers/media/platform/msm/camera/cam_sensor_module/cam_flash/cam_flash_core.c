@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
  * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -185,7 +185,7 @@ static int cam_flash_ops(struct cam_flash_ctrl *flash_ctrl,
 	if (flash_ctrl->switch_trigger)
 		cam_res_mgr_led_trigger_event(
 			flash_ctrl->switch_trigger,
-			LED_SWITCH_ON);
+			(enum led_brightness)LED_SWITCH_ON);
 
 	return 0;
 }
@@ -213,7 +213,7 @@ int cam_flash_off(struct cam_flash_ctrl *flash_ctrl)
 
 	if (flash_ctrl->switch_trigger)
 		cam_res_mgr_led_trigger_event(flash_ctrl->switch_trigger,
-			LED_SWITCH_OFF);
+			(enum led_brightness)LED_SWITCH_OFF);
 
 	flash_ctrl->flash_state = CAM_FLASH_STATE_START;
 	return 0;
