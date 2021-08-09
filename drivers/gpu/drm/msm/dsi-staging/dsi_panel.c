@@ -1,5 +1,4 @@
 /*
-  MDP_Log_Message(MDP_LOGLEVEL_ERROR, "MDPLib: MDPDisableClocks()  --zjz\n");
  * Copyright (c) 2016-2018, The Linux Foundation. All rights reserved.
  * Copyright (C) 2020 XiaoMi, Inc.
  *
