@@ -63,7 +63,6 @@
 #define DISPPARAM_DC_ON 0x40000
 #define DISPPARAM_DC_OFF 0x50000
 
-
 #define HWCONPONENT_NAME "display"
 #define HWCONPONENT_KEY_LCD "LCD"
 
