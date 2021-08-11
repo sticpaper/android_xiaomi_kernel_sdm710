@@ -3,6 +3,7 @@
  * fs/f2fs/super.c
  *
  * Copyright (c) 2012 Samsung Electronics Co., Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *             http://www.samsung.com/
  */
 #include <linux/module.h>
@@ -880,6 +881,9 @@ static struct inode *f2fs_alloc_inode(struct super_block *sb)
 	INIT_LIST_HEAD(&fi->gdirty_list);
 	INIT_LIST_HEAD(&fi->inmem_ilist);
 	INIT_LIST_HEAD(&fi->inmem_pages);
+#ifdef CONFIG_F2FS_CP_OPT
+	INIT_LIST_HEAD(&fi->xattr_dirty_list);
+#endif
 	mutex_init(&fi->inmem_lock);
 	init_rwsem(&fi->i_gc_rwsem[READ]);
 	init_rwsem(&fi->i_gc_rwsem[WRITE]);
@@ -3293,6 +3297,11 @@ try_onemore:
 		INIT_LIST_HEAD(&sbi->inode_list[i]);
 		spin_lock_init(&sbi->inode_lock[i]);
 	}
+
+#ifdef CONFIG_F2FS_CP_OPT
+	INIT_LIST_HEAD(&sbi->xattr_set_dir_ilist);
+	spin_lock_init(&sbi->xattr_set_dir_ilist_lock);
+#endif
 
 	f2fs_init_extent_cache_info(sbi);
 
